@@ -10,10 +10,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            // Handle menu button press
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
           },
         ),
         centerTitle: true,
@@ -37,160 +41,224 @@ class HomeScreen extends StatelessWidget {
 
 
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            SingleChildScrollView(
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Home'),
+              // selected: selectedDrawerIndex == 0, // Set to true if the item is selected
+              onTap: () {
+                // Update the state of the app
+                // setState(() {
+                //   selectedDrawerIndex = 0; // Update the selectedDrawerIndex
+                // });
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Business'),
+              // selected: selectedDrawerIndex == 1, // Set to true if the item is selected
+              onTap: () {
+                // Update the state of the app
+                // setState(() {
+                //   selectedDrawerIndex = 1; // Update the selectedDrawerIndex
+                // });
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('School'),
+              // selected: selectedDrawerIndex == 2, // Set to true if the item is selected
+              onTap: () {
+                // Update the state of the app
+                // setState(() {
+                //   selectedDrawerIndex = 2; // Update the selectedDrawerIndex
+                // });
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child:Row(
+                child: Row(
                   children: [
                     card('Cash', '250'),
                     SizedBox(width: 20.0,),
                     addCard(),
                   ],
-                )
-            ),
-            SizedBox(height: 30.0,),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding:const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Rest',
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            fontWeight: FontWeight.bold,
-                            color:MyColors.primaryColor ,
+                ),
+              ),
+              SizedBox(height: 25.0,),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding:const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Rest',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color:MyColors.primaryColor ,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          '300 DH',
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black ,
+                          SizedBox(
+                            height: 10.0,
                           ),
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Color.fromRGBO(217, 217, 217, 1),
+                          Text(
+                            '300 DH',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black ,
+                            ),
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Color.fromRGBO(217, 217, 217, 1),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Expanded(
-                  child: Container(
-                    padding:const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Expenses',
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            fontWeight: FontWeight.bold,
-                            color:MyColors.primaryColor ,
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding:const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Expenses',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color:MyColors.primaryColor ,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Text(
-                          '945 DH',
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black ,
+                          SizedBox(
+                            height: 10.0,
                           ),
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Color.fromRGBO(217, 217, 217, 1),
+                          Text(
+                            '945 DH',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black ,
+                            ),
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Color.fromRGBO(217, 217, 217, 1),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 50.0,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'All transactions',
+                ],
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'All transactions',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'View all',
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 15.0,
                     ),
                   ),
-                ),
-                Text(
-                  'View all',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 30.0,),
-            Expanded(
-              child: ListView.separated(
+                ],
+              ),
+              SizedBox(height: 20.0,),
+              ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
                 separatorBuilder: (context, index) => SizedBox(height: 10.0,),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) => listTransactions(),
                 itemCount: 10,
-              
-              ),
-            )
-
-
-
-          ],
-
+              )
+            ],
+          ),
         ),
-        //
-        //
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.add),
-        backgroundColor: MyColors.primaryColor,
-        foregroundColor: Colors.white,
+      floatingActionButton: ClipOval(
+        child: FloatingActionButton(
+          onPressed: (){},
+          child: Icon(Icons.add),
+          backgroundColor: MyColors.primaryColor,
+          foregroundColor: Colors.white,
+        ),
       ),
+
       bottomNavigationBar: BottomAppBar(
-        notchMargin: 7.0,
+        notchMargin: 5.0,
         shape: CircularNotchedRectangle(),
         color: MyColors.primaryColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.timeline,
+                  color: Colors.blue,
+                ),
+                Text(
+                  "Trans",
+                  style: TextStyle(color: Colors.blue),
+                )
+              ],
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 5.0),
+              padding:
+              const EdgeInsets.only(right: 70.0, top: 3.0,),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
-                    Icons.home,
+                    Icons.bar_chart,
                     color: Colors.white,
                   ),
                   Text(
-                    "Home",
+                    "Report",
                     style: TextStyle(color: Colors.white),
                   )
                 ],
@@ -198,53 +266,33 @@ class HomeScreen extends StatelessWidget {
             ),
             Padding(
               padding:
-              const EdgeInsets.only(right: 20.0, top: 10.0, bottom: 10.0),
+              const EdgeInsets.only(left: 10.0, top: 0.0, ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
-                    Icons.shopping_cart,
+                    Icons.pie_chart,
                     color: Colors.white,
                   ),
                   Text(
-                    "Shop",
+                    "planning",
                     style: TextStyle(color: Colors.white),
                   )
                 ],
               ),
             ),
-            Padding(
-              padding:
-              const EdgeInsets.only(left: 20.0, top: 10.0, bottom: 10.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.favorite,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "Fav",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.settings,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "Setting",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Setting",
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
             ),
           ],
         ),
