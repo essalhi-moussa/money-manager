@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/all_transaction.dart';
 import 'package:money_manager/components/compononets.dart';
 
 import 'colors.dart';
@@ -194,10 +195,18 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
-                    'View all',
-                    style: TextStyle(
-                      fontSize: 15.0,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AllTransactionScreen()),
+                      );
+                    },
+                    child: Text(
+                      'View all',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
                     ),
                   ),
                 ],
@@ -225,79 +234,32 @@ class HomeScreen extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-
-      bottomNavigationBar: BottomAppBar(
-        notchMargin: 5.0,
-        shape: CircularNotchedRectangle(),
-        color: MyColors.primaryColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.timeline,
-                  color: Colors.blue,
-                ),
-                Text(
-                  "Trans",
-                  style: TextStyle(color: Colors.blue),
-                )
-              ],
-            ),
-            Padding(
-              padding:
-              const EdgeInsets.only(right: 70.0, top: 3.0,),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.bar_chart,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "Report",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding:
-              const EdgeInsets.only(left: 10.0, top: 0.0, ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.pie_chart,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "planning",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-                Text(
-                  "Setting",
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 0,
+        onTap: (index) {
+          print(index);
+        },
+        selectedItemColor: MyColors.primaryColor, // Replace with MyColors.primaryColor if available
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.timeline),
+            label: 'Trans',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Report',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pie_chart),
+            label: 'Planning',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Setting',
+          ),
+        ],
       ),
-
     );
   }
 }

@@ -258,6 +258,7 @@ Widget listTransactions() =>  Container(
   ),
   decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(10.0),
-    color: Color.fromRGBO(217, 217, 217, 1),
+    color: Color.fromRGBO(204, 209, 238, 1.0),
   ),
 );
+
