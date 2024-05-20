@@ -249,7 +249,7 @@ Widget listTransactions() =>  Container(
           ),
         ),
         SizedBox(width: 30.0,),
-        Text('200 dh'),
+        Text('200 \$'),
         SizedBox(width: 20.0,),
       ],
 
@@ -258,7 +258,7 @@ Widget listTransactions() =>  Container(
   ),
   decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(10.0),
-    color: Color.fromRGBO(204, 209, 238, 1.0),
+    color: MyColors.secondaryColor,
   ),
 );
 

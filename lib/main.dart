@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:money_manager/home.dart';
 
 import 'colors.dart';
+import 'layout/home_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: HomeLayout(),
     );
   }
 }

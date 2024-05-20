@@ -100,56 +100,91 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Wrap(
-                  spacing: 8.0,
-                  children: List<Widget>.generate(dateOptions.length, (int index) {
-                    return FilterChip(
-                      label: Text(dateOptions[index]),
-                      selected: selectedChipIndex == index,
-                      onSelected: (bool selected) {
-                        setState(() {
-                          selectedChipIndex = selected ? index : selectedChipIndex;
-                        });
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Wrap(
+                spacing: 8.0,
+                children: List<Widget>.generate(dateOptions.length, (int index) {
+                  return FilterChip(
+                    label: Text(dateOptions[index]),
+                    selected: selectedChipIndex == index,
+                    onSelected: (bool selected) {
+                      setState(() {
+                        selectedChipIndex = selected ? index : selectedChipIndex;
+                      });
 
-                        // Handle action based on selected chip
-                        if ( dateOptions[index] == 'day') {
-                          _showDatePicker(context);
-                        }
-                      },
-                      selectedColor: MyColors.primaryColor,
-                      labelStyle: TextStyle(
-                        color: selectedChipIndex == index ? Colors.white : MyColors.primaryColor,
+                      // Handle action based on selected chip
+                      if ( dateOptions[index] == 'day') {
+                        _showDatePicker(context);
+                      }
+                    },
+                    selectedColor: MyColors.primaryColor,
+                    labelStyle: TextStyle(
+                      color: selectedChipIndex == index ? Colors.white : MyColors.primaryColor,
+                    ),
+                    backgroundColor: Colors.white,
+                    shape: StadiumBorder(
+                      side: BorderSide(
+                        color: MyColors.primaryColor,
+                        width: 1.0,
                       ),
-                      backgroundColor: Colors.white,
-                      shape: StadiumBorder(
-                        side: BorderSide(
-                          color: MyColors.primaryColor,
-                          width: 1.0,
-                        ),
-                      ),
-                      showCheckmark: false,
-                    );
-                  }),
-                ),
+                    ),
+                    showCheckmark: false,
+                  );
+                }),
               ),
-              SizedBox(height: 20.0,),
-              ListView.separated(
+            ),
+            SizedBox(height: 20.0,),
+            Expanded(
+              child: ListView.separated(
                 // physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
+                // shrinkWrap: true,
                 separatorBuilder: (context, index) => SizedBox(height: 10.0,),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) => listTransactions(),
-                itemCount: 10,
-              )
-            ],
-          ),
+                itemCount: 20,
+              ),
+            )
+          ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: ClipOval(
+        child: FloatingActionButton(
+          onPressed: (){},
+          child: Icon(Icons.add),
+          backgroundColor: MyColors.primaryColor,
+          foregroundColor: Colors.white,
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 0,
+        onTap: (index) {
+          print(index);
+        },
+        selectedItemColor: MyColors.primaryColor, // Replace with MyColors.primaryColor if available
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.timeline),
+            label: 'Trans',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: 'Report',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pie_chart),
+            label: 'Planning',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Setting',
+          ),
+        ],
       ),
     );
   }
