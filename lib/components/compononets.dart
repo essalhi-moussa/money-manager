@@ -5,6 +5,7 @@ import 'package:money_manager/colors.dart';
 // --------------- Button --------------
 Widget defaultButton({
   double width = double.infinity,// par detault kayakhdo had 9yam
+  double? height,
   Color background = Colors.blue,
   double radius = 6.0,
   required VoidCallback function,
@@ -12,7 +13,7 @@ Widget defaultButton({
   bool isUpperCAse = true,
 }) =>  Container(
   width: width,
-  height: 40.0,
+  height: height,
   child: MaterialButton(
     onPressed: function,
     child: Text(
@@ -39,11 +40,12 @@ Widget defaultFormField({
   required TextInputType type,
   required String? Function(String?)? validate,
   required String label,
-  required IconData prefix,
+  IconData? prefix,
   IconData? suffix = null,
   bool isPassword = false,
   Function()? suffixPressd,
   bool isClickable = true,
+  double? height,
 }) =>  TextFormField(
   controller: controller,
   keyboardType: type,
@@ -53,6 +55,7 @@ Widget defaultFormField({
   onChanged: onChange,
   onTap: onTap,
   validator: validate,
+  style: TextStyle(height: height),
   decoration: InputDecoration(
     labelText: label,
     prefixIcon: Icon(
@@ -70,6 +73,42 @@ Widget defaultFormField({
 
 
 
+
+
+Widget buildDropdownField({
+  required String label,
+  required String? value,
+  required List<String> items,
+  required ValueChanged<String?> onChanged,
+  double height = 60.0, // Default height parameter
+}) {
+  return Container(
+    height: height, // Set the height of the container
+    child: DropdownButtonFormField<String>(
+      value: value,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+      ),
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      onChanged: onChanged,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please select an option';
+        }
+        return null;
+      },
+      items: items.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    ),
+  );
+}
 //------------------ Card ------------------------------
 Widget card(
     String name_crd,
@@ -261,4 +300,5 @@ Widget listTransactions() =>  Container(
     color: MyColors.secondaryColor,
   ),
 );
+
 

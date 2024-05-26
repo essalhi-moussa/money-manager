@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/all_transaction.dart';
-import 'package:money_manager/components/compononets.dart';
 import 'package:money_manager/planning.dart';
 import 'package:money_manager/report.dart';
 import 'package:money_manager/setting.dart';
+import '../add_transaction.dart';
 import '../colors.dart';
 import '../home.dart';
 
@@ -99,7 +98,14 @@ class _HomeScreenState extends State<HomeLayout> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ClipOval(
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddTransactionScreen()),
+              );
+            });
+          },
           child: Icon(Icons.add),
           backgroundColor: MyColors.primaryColor,
           foregroundColor: Colors.white,
